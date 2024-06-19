@@ -1,0 +1,23 @@
+# bits-n-bytes/compose.prod.yaml
+
+version: '3.9'
+
+services:
+  web:
+    container_name: bits-n-bytes-web
+    image: bits-n-bytes-web:0.1.0
+    build:
+      context: ./web
+      dockerfile: prod.Dockerfile
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./web/.env.prod
+    environment:
+      NODE_ENV: production
+    networks:
+      - bits-n-bytes-network
+
+networks:
+  bits-n-bytes-network:
+    driver: bridge

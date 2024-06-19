@@ -1,0 +1,32 @@
+# bits-n-bytes/compose.dev.yaml
+
+version: '3.9'
+
+services:
+  web:
+    container_name: bits-n-bytes-web-dev
+    image: bits-n-bytes-web-dev:0.1.0
+    build:
+      context: ./web
+      dockerfile: dev.Dockerfile
+    ports:
+      - '5173:3000'
+    env_file:
+      - ./web/.env.dev
+    environment:
+      NODE_ENV: development
+    develop:
+      watch:
+        - action: sync
+          path: ./web/src
+          target: /usr/src/app/src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+    networks:
+      - bits-n-bytes-network
+
+networks:
+  bits-n-bytes-network:
+    driver: bridge
