@@ -49,6 +49,19 @@ class AuthController extends Controller
         }
     }
 
+    public function me(): JsonResponse
+    {
+
+        $user = auth()->user();
+
+        return response()->json([
+            'success' => true,
+            'statusCode' => 200,
+            'message' => 'Authenticated user info.',
+            'data' => $user,
+        ], 200);
+    }
+
     public function logout(): JsonResponse
     {
         Auth::user()->tokens()->delete();
