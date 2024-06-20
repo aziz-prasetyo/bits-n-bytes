@@ -35,7 +35,7 @@ services:
       - auth-services-network
       - bits-n-bytes-network
     depends_on:
-      - postgres
+      - auth-services-postgres
 
   login:
     build:
@@ -54,15 +54,18 @@ services:
       - auth-services-network
       - bits-n-bytes-network
     depends_on:
-      - postgres
+      - auth-services-postgres
 
-  postgres:
-    image: postgres:16.3-alpine3.18
-    container_name: postgres
+  auth-services-postgres:
+    build:
+      context: ./auth-services/postgres
+      dockerfile: Dockerfile
+    container_name: auth-services-postgres
+    image: auth-services-postgres:0.1.0
     ports:
       - '5432:5432'
     env_file:
-      - .env.postgres
+      - ./auth-services/.env.postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -71,3 +74,8 @@ services:
 networks:
   bits-n-bytes-network:
     driver: bridge
+  auth-services-network:
+    driver: bridge
+
+volumes:
+  pgdata: {}
