@@ -18,6 +18,56 @@ services:
     networks:
       - bits-n-bytes-network
 
+  register:
+    build:
+      context: ./auth-services/register
+      dockerfile: prod.Dockerfile
+    container_name: register-service
+    image: register-service:0.1.0
+    env_file:
+      - ./auth-services/register/.env
+    volumes:
+      - ./auth-services/register:/var/www
+      - ./auth-services/register/vendor:/var/www/vendor
+    ports:
+      - '8001:8000'
+    networks:
+      - auth-services-network
+      - bits-n-bytes-network
+    depends_on:
+      - postgres
+
+  login:
+    build:
+      context: ./auth-services/login
+      dockerfile: prod.Dockerfile
+    container_name: login-service
+    image: login-service:0.1.0
+    env_file:
+      - ./auth-services/login/.env
+    volumes:
+      - ./auth-services/login:/var/www
+      - ./auth-services/login/vendor:/var/www/vendor
+    ports:
+      - '8002:8000'
+    networks:
+      - auth-services-network
+      - bits-n-bytes-network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16.3-alpine3.18
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - auth-services-network
+
 networks:
   bits-n-bytes-network:
     driver: bridge
