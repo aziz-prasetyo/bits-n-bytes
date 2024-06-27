@@ -1,5 +1,3 @@
-# version: "3.9"
-
 services:
   ####################################################################################################
   # Web
@@ -160,5 +158,4 @@ networks:
 
 volumes:
   # Create a named volume for PostgreSQL data
-  pgdata: 
-    driver: local
+  pgdata: {}
