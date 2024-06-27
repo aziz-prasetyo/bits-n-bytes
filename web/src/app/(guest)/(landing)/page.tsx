@@ -21,7 +21,7 @@ export default function Home() {
               Transforming Futures Through Technology
             </p>
             <div className="mt-5 max-w-2xl">
-              <h1 className="scroll-m-20 text-balance text-4xl font-extrabold tracking-tight lg:text-5xl">
+              <h1 className="scroll-m-20 text-balance text-4xl font-extrabold tracking-tight text-primary lg:text-5xl">
                 Bits&apos;n&apos;Bytes
               </h1>
             </div>
@@ -32,9 +32,14 @@ export default function Home() {
                 menjanjikan di dunia digital.
               </p>
             </div>
-            <Button size={"lg"} className="mt-8" asChild>
-              <Link href="/dashboard">Get Started</Link>
-            </Button>
+            <div className="mt-8 flex flex-col justify-center gap-2 sm:flex-row">
+              <Button size={"lg"} asChild>
+                <Link href="/login">Get Started</Link>
+              </Button>
+              <Button size={"lg"} variant="outline" asChild>
+                <Link href="/">Learn More</Link>
+              </Button>
+            </div>
           </div>
         </div>
         <div className="absolute -start-20 bottom-12 -z-[1] h-56 w-56 rounded-lg bg-gradient-to-b from-primary/30 via-primary/5 to-background p-px">

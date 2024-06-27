@@ -14,7 +14,7 @@ export default function GuestLayout({ children }: Readonly<GuestLayoutProps>) {
       <header className="container absolute top-0 z-50 mt-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <AppLogo />
-          <span className="hidden sm:block">Bits&apos;n&apos;Bytes</span>
+          <span>Bits&apos;n&apos;Bytes</span>
         </Link>
         <div className="flex gap-2">
           <Socials />
