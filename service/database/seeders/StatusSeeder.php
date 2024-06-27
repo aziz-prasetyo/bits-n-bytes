@@ -14,12 +14,12 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         Status::updateOrCreate(
-            ['id' => 1],
+            ['status_id' => 1],
             ['status_name' => 'Published', 'created_at' => now(), 'updated_at' => now()]
         );
 
         Status::updateOrCreate(
-            ['id' => 2],
+            ['status_id' => 2],
             ['status_name' => 'Draft', 'created_at' => now(), 'updated_at' => now()]
         );
     }

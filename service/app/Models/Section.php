@@ -14,7 +14,7 @@ class Section extends Model
     public $timestamps = true;
 
     public function course(): BelongsTo {
-        return $this->belongsTo(Course::class, "course_id", "id");
+        return $this->belongsTo(Course::class, "course_id", "section_id");
     }
 
 }

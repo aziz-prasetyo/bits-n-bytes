@@ -4,16 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Status extends Model
 {
     protected $table = "statuses";
-    protected $primaryKey = "id";
-    protected $keyType = "int";
-    public $timestamps = true;
+    protected $primaryKey = "status_id";
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'status_name',
+    ];
 
-    public function courses(): HasMany {
-        return $this->hasMany(Course::class, "status_id", "id");
+    public function course(): HasOne
+    {
+        return $this->hasOne(Course::class, "course_id", "status_id");
     }
 
 }

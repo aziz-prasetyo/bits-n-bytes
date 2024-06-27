@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            StatusSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class,
             GuruSeeder::class,
