@@ -15,4 +15,10 @@ Route::post('/refresh', [AuthController::class, 'refreshToken']);
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/test-middleware', function (Request $request) {
+        return response()->json([
+            'message' => 'Middleware berhasil digunakan!'
+        ]);
+    })->middleware('test');
 });
